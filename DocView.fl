@@ -1,0 +1,151 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'doc_display_model.dart';
+export 'doc_display_model.dart';
+
+class DocDisplayWidget extends StatefulWidget {
+  const DocDisplayWidget({Key? key}) : super(key: key);
+
+  @override
+  _DocDisplayWidgetState createState() => _DocDisplayWidgetState();
+}
+
+class _DocDisplayWidgetState extends State<DocDisplayWidget> {
+  late DocDisplayModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => DocDisplayModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
+    return GestureDetector(
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    width: 419,
+                    height: 98,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    child: Align(
+                      alignment: AlignmentDirectional(-1.00, 0.00),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                        child: Text(
+                          'SubjectNotes:',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontSize: 32,
+                                  ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                width: 419,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: Stack(
+                  children: [
+                    Opacity(
+                      opacity: 0.4,
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          unawaited(
+                            () async {
+                              await launchURL(valueOrDefault<String>(
+                                currentUserReference?.id,
+                                'https://firebasestorage.googleapis.com/v0/b/scholarshare-6a4dc.appspot.com/o/users%2FlYbjuhfAzuOexdYW6vXFhhgBk132%2Fuploads%2F1699014897670000_0.pdf?alt=media&token=ee3268f6-e3b9-426c-8e0c-1ab7180434a4&_gl=1*1ie8zfp*_ga*NzI2NDc4MzM1LjE2OTkwMTA5ODA.*_ga_CW55HF8NVT*MTY5OTA3NDAwNC43LjEuMTY5OTA3NDAzOS4yNS4wLjA.',
+                              ));
+                            }(),
+                          );
+                        },
+                        text: '',
+                        options: FFButtonOptions(
+                          width: 1000,
+                          height: 54,
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                          iconPadding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    color: Colors.white,
+                                  ),
+                          elevation: 3,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.00, -1.00),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                        child: Text(
+                          'Uploaded by [Student Name]',
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
